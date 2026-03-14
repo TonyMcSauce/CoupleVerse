@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoupleVerse – Play, laugh, and discover each other again.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient Background -->
+  <div class="ambient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" onclick="showPage('home')">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">CoupleVerse</span>
+      </a>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" onclick="showPage('home'); setActiveNav(this)">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('games'); setActiveNav(this)">Games</a>
+        <a href="#" class="nav-link" onclick="showPage('about'); setActiveNav(this)">About</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#" onclick="showPage('home'); closeMobileMenu(); setActiveNavMobile(this)">Home</a>
+      <a href="#" onclick="showPage('games'); closeMobileMenu(); setActiveNavMobile(this)">Games</a>
+      <a href="#" onclick="showPage('about'); closeMobileMenu(); setActiveNavMobile(this)">About</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HOME PAGE ===================== -->
+  <div id="page-home" class="page active">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Made for couples ✦</div>
+        <h1 class="hero-title">
+          Couple<span class="title-gradient">Verse</span>
+        </h1>
+        <p class="hero-subtitle">Play, laugh, and discover each other again.</p>
+        <button class="hero-cta" onclick="showPage('games'); document.querySelector('[onclick*=games]').classList.add('active')">
+          <span>Start Playing</span>
+          <span class="cta-arrow">→</span>
+        </button>
+        <p class="hero-note">7 games · No signup · Instant fun</p>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-cards">
+          <div class="float-card fc-1">💬<br><small>Deep Talk</small></div>
+          <div class="float-card fc-2">🎡<br><small>Date Ideas</small></div>
+          <div class="float-card fc-3">❤️<br><small>Compliments</small></div>
+          <div class="float-card fc-4">🃏<br><small>Truth Dare</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Games Grid -->
+    <section class="games-section" id="home-games">
+      <div class="section-header">
+        <h2 class="section-title">Your Game Night, Elevated</h2>
+        <p class="section-sub">Seven beautifully crafted games for two</p>
+      </div>
+      <div class="games-grid" id="homeGamesGrid"></div>
+    </section>
+  </div>
+
+  <!-- ===================== GAMES PAGE ===================== -->
+  <div id="page-games" class="page">
+    <section class="games-page-hero">
+      <h2 class="page-title">Choose Your Game</h2>
+      <p class="page-subtitle">Pick a game and start connecting</p>
+    </section>
+    <div class="games-grid full-grid" id="gamesPageGrid"></div>
+  </div>
+
+  <!-- ===================== ABOUT PAGE ===================== -->
+  <div id="page-about" class="page">
+    <section class="about-section">
+      <div class="about-content">
+        <div class="about-badge">Our Story</div>
+        <h2 class="about-title">Built for Two</h2>
+        <p class="about-body">CoupleVerse was born from a simple belief: the best relationships are built on laughter, curiosity, and genuine connection. In a world full of distractions, we created a space where two people can put their phones down – and play together.</p>
+        <p class="about-body">Every game in CoupleVerse is designed to spark conversation, create memories, and bring couples closer – whether you've been together for 3 months or 30 years.</p>
+        <div class="about-values">
+          <div class="value-card">
+            <div class="value-icon">💛</div>
+            <h4>No signup needed</h4>
+            <p>Just open and play. Your privacy matters.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🎮</div>
+            <h4>Offline-first</h4>
+            <p>Works anywhere, no internet required after loading.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">✨</div>
+            <h4>Always free</h4>
+            <p>Love shouldn't cost a subscription.</p>
+          </div>
+        </div>
+        <button class="hero-cta" onclick="showPage('games')">
+          <span>Explore Games</span>
+          <span class="cta-arrow">→</span>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== GAME OVERLAY ===================== -->
+  <div id="gameOverlay" class="game-overlay hidden">
+    <div class="game-panel">
+      <button class="game-close" onclick="closeGame()">✕</button>
+      <div id="gameContent"></div>
+    </div>
+  </div>
+
+  <!-- Sound Effects (Web Audio) -->
+  <script src="script.js"></script>
+</body>
+</html>
